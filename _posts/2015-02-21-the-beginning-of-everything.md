@@ -23,6 +23,7 @@ would even help me get a job*. Immediately, that old problem resurfaced.
 
 ### *That's boring.*
 
+
 A blog is supposed to be read by people interested in what the blogger is blogging about, not by a few *potential* employers who may very well never
 even read this. My blog would still lack a true purpose and be run purely under the façade of something helpful to put on my resume or CV. 
 I don't want to be a liar, even to myself, so I needed another purpose. I thought for a while, and tried to create my ideal image of what this blog should be, and what
@@ -40,7 +41,7 @@ deeper into the OS isn't something I've often done, and I don't know all that aw
 
 I want to know more, but finding easy to read guides is hard, and I'm sure I'm not the only one thinking that. So I decided that I would
 brave all the confusion and craziness and write a blog detailing my adventures. I'd write about what I learned, give some examples of how it works, 
-and link to the site I learned it from. Eventually I'd have written a slightly unorganized guide on how to go from **__Computer Scrub Lord__** to **__Hacking Genius__**. 
+and link to the site I learned it from. Eventually I'd have written a slightly unorganized guide on how to go from *__Computer Scrub Lord__* to *__Hacking Genius__*. 
 Then, I could write an organized, easy to read, step by step guide about everything a pen tester could ever want to know. Something that could really
 help people like me who are adequate (through a professionals eyes) with a computer and understand technology pretty well, but don't quite have the 
 knowledge base to jump right into CTF and wargames. I could do something great.
