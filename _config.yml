@@ -8,8 +8,8 @@
 title:               Nicholas Dechert
 tagline:             'Programming, Web Development, and Information Security'
 description:         'Learning by doing, and teaching along the way'
-url:                 https://claymore2106.github.io
-baseurl:             ''
+url:                 claymore2106.github.io
+baseurl:             '/claymore2106.github.io'
 paginate:            5
 
 # About/contact
