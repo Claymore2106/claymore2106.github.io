@@ -1,7 +1,6 @@
 ---
 layout: post
 title: The Long Awaited Update
-permalink: :year/:month/:day/:title/
 ---
 
 So, its been a while. Far too long in fact. But, I needed to get a job, get a car, and move to a better, cheaper place. All that took a good while and made it 
