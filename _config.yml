@@ -1,15 +1,15 @@
 # Permalinks
 #
 # Use of `relative_permalinks` ensures post links from the index work properly.
-permalink:           pretty
+permalink:           :baseurl/:title/
 # relative_permalinks: true
 
 # Setup
 title:               Nicholas Dechert
 tagline:             'Programming, Web Development, and Information Security'
 description:         'Learning by doing, and teaching along the way'
-url:                 https://claymore2106.github.io
-baseurl:             'https://claymore2106.github.io'
+url:                 http://claymore2106.github.io
+baseurl:             'http://claymore2106.github.io'
 paginate:            5
 
 # About/contact
