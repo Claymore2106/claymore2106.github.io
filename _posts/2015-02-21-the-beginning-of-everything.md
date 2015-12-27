@@ -1,7 +1,7 @@
 ---
 layout: post
 title: The Beginning of Everything
-categorys: [meta,personal]
+categorys: [meta, personal]
 ---
 
 And so, after some set up, a lot of learning and a bit of testing, a blog is now live and hosted on github. For me, this is a very exciting day.
