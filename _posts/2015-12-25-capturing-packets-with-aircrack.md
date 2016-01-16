@@ -50,7 +50,46 @@ With that done, we can install the Aircrack suite and start capturing packets.
 ## Installation
 
 Depending on your respsitories, you have Aircrack available for download. You
- can check by running 
+ can check by running `apt search aircrack`
+
+![apt search aircrack](/images/Capturing-Packets-Aircrack/4-apt-search-aircrack.png)
+
+Aha! We do have it. Lets check what version it is with `apt show aircrack`
+
+![apt show aircrack](/images/Capturing-Packets-Aircrack/5-apt-show-aircrack.png)
+
+Now, here you may have a choice. This version is 1.1-6, and as of writing the
+ newest version is 1.2-RC3. I like to keep things up to date, so I'm going to
+ use the newest version. It is available for download on [www.aircrack-ng.org][web].
+ If you want to install the older version, run `sudo apt-get install aircrack-ng`.
+ If you take the newer version, you will need to compile the source code. Good
+ thing we updated in the beginning!
+
+Download and extract the source code to a directory. Then, navigate there and
+ run `make`
+
+ ![make](/images/Capturing-Packets-Aircrack/7-openssl.png)
+
+Well, our headers were up to date, but we have unmet dependencies. To compile
+ Aircrack we will need to install the development version of openssl
+ (the development version includes the headers; in this case, hmac.h).
+ Depending on your distro, it may be under a different name. Use
+ `apt search openssl` to find a ton of packages, and look for one similar to
+ 'libssl-dev'
+
+ ![libssl-dev](/images/Capturing-Packets-Aircrack/9-libssl-dev.png)
+
+Install it with `sudo apt-get install libssl-dev`, then run `make` again.
+ Hopefully this time you have all the dependencies met. If you still have errors
+ check [Installing Aircrack-ng From Source][deps].
+
+Note: After compiling or installing, you may get a 'command not found' error
+ from your terminal. Closing the current one and opening a new one solved this
+ for me.
+
+## Capturing Packets
+
+Now we can finally 
 
 
 <!--- References --->
@@ -58,3 +97,5 @@ Depending on your respsitories, you have Aircrack available for download. You
 [VB]: https://www.virtualbox.org/wiki/Downloads
 [distro]: http://www.howtogeek.com/191207/10-of-the-most-popular-linux-distributions-compared/
 [drivers]: [http://www.aircrack-ng.org/doku.php?id=compatibility_drivers]
+[web]: [http://www.aircrack-ng.org]
+[deps]: [http://www.aircrack-ng.org/doku.php?id=install_aircrack#installing_aircrack-ng_from_source]
