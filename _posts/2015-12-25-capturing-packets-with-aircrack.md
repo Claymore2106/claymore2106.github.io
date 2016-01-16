@@ -28,10 +28,29 @@ You will also need a wifi card, integrated or external, and it needs to be
 First off, you should make sure your packages and distro are up to date. Ideally
  you should do this every time you're going to install something if some time
  has passed since you last updated. Its simple and only takes a minute. Update
- the apt repository by running: `sudo apt-get update`
+ the apt repository by running `sudo apt-get update`
 
+(Forgive the mice in the pictures, didn't realize Mint keeps it)
 ![Run apt-get update](/images/Capturing-Packets-Aircrack/1-apt-update.png)
 
+Then, run `sudo apt-get upgrade`
+
+![Run apt-get update](/images/Capturing-Packets-Aircrack/2-apt-upgrade.png)
+
+Finally, run `sudo apt-get dist-upgrade`
+
+![Run apt-get dist-upgrade](/images/Capturing-Packets-Aircrack/3-apt-dist-upgrade.png)
+
+Now, your system should be up to date. These steps are necessary to make sure
+ you have all necessary headers and files in case you need to compile from
+ source code.
+
+With that done, we can install the Aircrack suite and start capturing packets.
+
+## Installation
+
+Depending on your respsitories, you have Aircrack available for download. You
+ can check by running 
 
 
 <!--- References --->
