@@ -28,10 +28,7 @@ You will also need a wifi card, integrated or external, and it needs to be
 First off, you should make sure your packages and distro are up to date. Ideally
  you should do this every time you're going to install something if some time
  has passed since you last updated. Its simple and only takes a minute. Update
- the apt repository bu running:
-
-'sudo apt-get update'
-
+ the apt repository by running: `sudo apt-get update`
 
 ![Run apt-get update](/images/Capturing-Packets-Aircrack/1-apt-update.png)
 
