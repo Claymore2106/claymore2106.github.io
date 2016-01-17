@@ -27,10 +27,10 @@ You will also need a wifi card, integrated or external, and it needs to be
 
 First off, you should make sure your packages and distro are up to date. Ideally
  you should do this every time you're going to install something if some time
- has passed since you last updated. Its simple and only takes a minute. Update
+ has passed since you last updated. It's simple and only takes a minute. Update
  the apt repository by running `sudo apt-get update`
 
-(Forgive the mice in the pictures, didn't realize Mint keeps it)
+(Forgive the mouse in the pictures, didn't realize Mint keeps it)
 ![Run apt-get update](/images/Capturing-Packets-Aircrack/1-apt-update.png)
 
 Then, run `sudo apt-get upgrade`
@@ -44,6 +44,9 @@ Finally, run `sudo apt-get dist-upgrade`
 Now, your system should be up to date. These steps are necessary to make sure
  you have all necessary headers and files in case you need to compile from
  source code.
+
+ > NOTE: If you are on a completely fresh system, you may need to install
+ > compliers with `sudo apt-get install build-essential`
 
 With that done, we can install the Aircrack suite and start capturing packets.
 
@@ -72,11 +75,11 @@ Download and extract the source code to a directory. Then, navigate there and
 
  ![sudo make](/images/Capturing-Packets-Aircrack/7-openssl.png)
 
-Well, our headers were up to date, but we have unmet dependencies. To compile
+Well, our headers are up to date, but we have unmet dependencies. To compile
  Aircrack we will need to install the development version of openssl
  (the development version includes the headers; in this case, hmac.h).
  Depending on your distro, it may be under a different name. Use
- `apt search openssl` to find a ton of packages, and look for one similar to
+ `apt search ssl` to find a ton of packages, and look for one similar to
  'libssl-dev'
 
  ![libssl-dev](/images/Capturing-Packets-Aircrack/9-libssl-dev.png)
@@ -86,12 +89,12 @@ Install it with `sudo apt-get install libssl-dev`, then run `sudo make` again.
  check [Installing Aircrack-ng From Source][deps].
 
 Note: After compiling or installing, you may get a 'command not found' error
- from your terminal. Closing the current one and opening a new one solved this
- for me.
+ from your terminal when running aircrack. Closing the current one and opening a
+ new one solved this for me.
 
 > #### _BE WARNED_
 > From here on out it is up to you to be responsible. Only attack networks you
-> have authorization to mess with. Unauthorized access to computer networks is
+> have authorization to mess with. Unauthorized access to a computer network is
 > a felony in the US, and illegal in most countries.
 
 # Capturing Packets
@@ -126,16 +129,16 @@ In the top left, you see the current channel, time elapsed, and date/time. Below
 
  `sudo airodump-ng -c 11 -w test wlan0mon`
 
- '-c' sets the channel, and '-w' tells where to create the test files. We set
- the channel so that we don't hop channels and possibly miss the handshake, it
- can only monitor one channel at a time. It may be worthwhile for you to create
- a 'pcaps' directory to store your files, as they can add up very quickly.
+ '-c' sets the channel, and '-w' tells where to create the capture files. We set
+ the channel so that we don't hop channels and possibly miss the handshake, as
+ it can only monitor one channel at a time. It may be worthwhile for you to
+ create a 'pcaps' directory to store your files, as they can add up very quickly.
 
 With that terminal open and writing to a file, open a new terminal. In this one
  we will run aireplay-ng, which will enable us to force a capture. The handshake
  only happens when a device connects to the network, not while it is connected.
  We could wait for my laptop to shut down, start back up, and connect to the
- network, but that could be a very long while. We want the handshake now, and
+ network; but that could be a very long wait. We want the handshake now, and
  aireplay-ng will do that for us by forcing my laptop to reconnect.
 
 In your fresh terminal, type
@@ -143,35 +146,35 @@ In your fresh terminal, type
 
 '-0' stands for 'deauth', 10 is the number of times to issue, '-a' signals the
  MAC address for the Access Point, and '-c' signals the MAC address of a
- connected client. Aireplay creates packets that look like the come from the
+ connected client. Aireplay creates packets that look like they come from the
  Access Point that are directed to a client. These packets contain a
  deauthentication message which disconnects the client from the AP. If the
- client had the 'connect automatically' option checked on their device, the
- client will scan for networks again, find one they know, and connect to it
+ client has the 'connect automatically' option checked on their device, the
+ device will scan for networks again, find one they know, and connect to it
  completely on its own. Airodump in the other terminal sees the connection and
  saves the handshake. No waiting involved!
 
 ![aireplay-ng](/images/Capturing-Packets-Aircrack/20-handshake.png)
 
-Airodump confirms this at the top 'status bar', as we see
+Airodump confirms this capture at the top 'status bar', as we see
  'WPA handshake: 40:16:7E:BF:6C:A8'. Stop airodump and close the terminal. We
  have successfully captured our handshake, and can now crack the password.
 
 # Cracking
 
-To crack with aircrack and with most other programs, you need a dictionary or
- output from another program (such as Crunch). A dictionary (or wordlist) is
- simply a file containing potential passwords. You can create your own by making
- a .txt file, writing your password in it and saving it. You can download
- dictionaries on the web at many places. I will use the RockYou.txt dictionary
- to crack my password.
+To crack with aircrack and with most other programs, you need either a
+ dictionary or output from another program (such as Crunch). A dictionary
+ (or wordlist) is simply a file containing potential passwords. You can create
+ your own by making a .txt file, writing your password in it and saving it. You
+ can download dictionaries on the web at many places. I will use the RockYou.txt
+ dictionary to crack my password.
 
 In the terminal, type `sudo aircrack-ng -w wordlists/Rock* pcaps/test*.cap`
 
 '-w' signals the location of the dictionary, and the last argument is always
  the location of the .cap file. In most linux distros, the \* character stands
  for 'wildcard', meaning it will search for files beginning with anything before
- the \*.
+ the \* and ending with anything after.
 
  ![aircrack](/images/Capturing-Packets-Aircrack/21-aircrack-command.png)
 
@@ -181,14 +184,13 @@ Now, you simply wait for aircrack to test all passwords in the file provided,
 ![key](/images/Capturing-Packets-Aircrack/22-key.png)
 
 My password, which happened to be my name in this instance, was found in the
- RockYou.txt
- dictionary, freely downloadable by anyone. Looks like I'll have to make a
- stronger password.
+ RockYou.txt dictionary, freely downloadable by anyone. Looks like I'll have to
+ make a stronger password.
 
 And thats it. I hope this tutorial helps you out.
 
-_In the future, I will replace this bit of text with links to the other ways_
-_passwords can be cracked. Check again soon!_
+_In the future, I will replace this bit of text with links to the other, faster_
+ _ways passwords can be cracked. Check again soon!_
 
 
 <!--- References --->
